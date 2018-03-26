@@ -58,11 +58,25 @@ class bstree{
 		display(current->right);
 	}
 	}
+	int search(node *current, int val){
+	if (current==NULL){
+	cout<<"Not there\n";
+	return 0;
+	 }
+	else {
+	if (val<current->data)	{search(current->left, val);}
+	else if (current->data==val){cout<<"The value is there\n";
+					return 1;}
+	else if (val>current->data) {search(current->right, val);}
+	else {cout<<"Not there\n";
+		return 0;}
+	}	
+	}
 };
 
 
 int main()
-{
+{	 int num;
 	 bstree obj;
 	 obj.insert(obj.root,7);
 	 obj.insert(obj.root,3);
@@ -70,6 +84,9 @@ int main()
 	 obj.insert(obj.root,1);
 	 obj.insert(obj.root,8);
 	 obj.display(obj.root);
+	 cout <<"\nWhich number do you want to search for?\n";
+	 cin>>num;
+	 obj.search(obj.root,num);
 	 return 0;
 }
 
