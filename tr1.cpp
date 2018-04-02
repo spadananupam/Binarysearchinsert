@@ -90,6 +90,7 @@ class bstree{
 		else if ((current->data<a)||(current->data>b)){ return; }
 		else {
 			rangeFinder(current->left, a, b);
+			cout<<current->data<<" ";
 			start++;
 			rangeFinder(current->right, a, b);
 		}
@@ -109,6 +110,10 @@ int main()
 	 cout <<"\nWhich number do you want to search for?\n";
 	 cin>>num;
 	 obj.search(obj.root,num);
+ 	 obj.count(obj.root);
+	 cout<<numNodes<<endl;
+	 obj.rangeFinder(obj.root, 1, 7);
+	 cout<<"\nThe number of nodes in the range is"<<start<<endl;
 	 return 0;
 }
 
