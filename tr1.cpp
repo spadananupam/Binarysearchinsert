@@ -1,5 +1,7 @@
 #include<iostream>
 using namespace std;
+int numNode=0;
+int start=0;
 
 //trees
 class node{
@@ -71,6 +73,26 @@ class bstree{
 	else {cout<<"Not there\n";
 		return 0;}
 	}	
+	}
+	
+		void count(node*current){
+		if (current == NULL) {return;}
+		else 
+			count (current->left);
+			numNodes++;
+			count (current->right);
+			}
+			
+	void rangeFinder(node*current, int a, int b){
+		if (current==NULL){
+			return;}
+		else if (b<a) { cout<< "Please enter the first value smaller than the second\n"; }
+		else if ((current->data<a)||(current->data>b)){ return; }
+		else {
+			rangeFinder(current->left, a, b);
+			start++;
+			rangeFinder(current->right, a, b);
+		}
 	}
 };
 
