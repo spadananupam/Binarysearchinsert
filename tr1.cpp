@@ -95,6 +95,73 @@ class bstree{
 			rangeFinder(current->right, a, b);
 		}
 	}
+
+node *search(node *v,int data)
+{
+ node *temp=v,*current;
+ if(v==NULL)
+ {
+  cout<<"Not Found\n";
+  return NULL;
+  }
+  else
+  {
+   if(data < temp->data)
+   current=search(temp->left,data);
+   else if(data > temp->data)
+   current=search(temp->right,data);
+   else
+   {
+    cout<<"Found\n";
+    return temp;
+   }
+   return current;
+  }
+ }
+	
+void deleteNode(int key)
+ {
+  node *current=search(root,key);
+  if(current->left == NULL && current->right == NULL)       //current is leaf
+  {
+   if(current->parent->left == current)           //check whether current is left child
+   current->parent->left=NULL;
+   else
+   current->parent->right=NULL;
+  }
+  else if(current->left==NULL)              //current has one child
+  {
+  if(current->parent->left==current)
+   current->parent->left=current->right;
+  else
+   current->parent->right=current->right;
+  }
+  else if(current->right == NULL)
+  {
+   if(current->parent->left == current)
+   current->parent->left=current->left;
+   else
+   current->parent->right=current->left;
+  }
+  else
+  {                                       //current has both children
+    node *temp=current->left;
+   while(temp->right != NULL)
+   {
+    temp=temp->right;
+   }
+   if(temp->left != NULL)
+   {
+    temp->parent->right=temp->left;
+    current->data=temp->data;
+   }
+   else
+   {
+    temp->parent->right=NULL;
+    current->data=temp->data;
+   }
+  }
+}
 };
 
 
